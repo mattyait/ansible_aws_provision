@@ -1,0 +1,117 @@
+---
+# =============Creating VPC==============
+- name: Create VPC
+  ec2_vpc_net:
+    name:             "{{ vpc_name }}"
+    cidr_block:       "{{ vpc_cidr_block }}"
+    region:           "{{ aws_region }}"
+    state:            "present"
+  register: vpc
+
+- name:               Set VPC ID in variable
+  set_fact:
+    vpc_id:           "{{ vpc.vpc.id }}"
+
+# =============Creating Public Subnet1a==============
+# Creating a Public subnet for vpc_id
+- name:               Create Public Subnet for 1a zone
+  ec2_vpc_subnet:
+    state:            "present"
+    vpc_id:           "{{ vpc_id }}"
+    cidr:             "{{ public_subnet_1_cidr }}"
+    az:               "{{ aws_region }}a"
+    region:           "{{ aws_region }}"
+    resource_tags:
+      Name:           "PublicSubnet-1a"
+  register: public_subnet1a
+
+# Getting the public subnet for 1b availability zone id in a variable
+- name:               Set Public Subnet for 1b ID in variable
+  set_fact:
+    public_subnet1a_id: "{{ public_subnet1a.subnet.id }}"
+
+# =============Creating Public Subnet1b==============
+# Creating a Public subnet for vpc_id
+- name:               Create Public Subnet for 1b zone
+  ec2_vpc_subnet:
+    state:            "present"
+    vpc_id:           "{{ vpc_id }}"
+    cidr:             "{{ public_subnet_2_cidr }}"
+    az:               "{{ aws_region }}b"
+    region:           "{{ aws_region }}"
+    resource_tags:
+      Name:           "PublicSubnet-1b"
+  register: public_subnet1b
+
+# Getting the public subnet for 1b availability zone id in a variable
+- name:               Set Public Subnet for 1b ID in variable
+  set_fact:
+    public_subnet1b_id: "{{ public_subnet1b.subnet.id }}"
+
+# =============Creating Internet Gateway==============
+# Create a Internet Gateway in VPC
+- name:               Create Internet Gateway for VPC
+  ec2_vpc_igw:
+    vpc_id:           "{{ vpc_id }}"
+    region:           "{{ aws_region }}"
+    state:            "present"
+    resource_tags:
+      Name:           "Internet Gateway"
+  register: vpc_internet_gateway
+
+# Storing the Internet Gateway Id in variable
+- name:
+  set_fact:
+    internet_gateway_id: "{{ vpc_internet_gateway.gateway_id}}"
+
+# =============Creating Public Route Table==============
+# Setting the the public Subnet Route Table.
+# It should be connected to Internet gateway
+- name:               Set up public subnet route table
+  ec2_vpc_route_table:
+    vpc_id:           "{{ vpc_id }}"
+    region:           "{{ aws_region }}"
+    tags:
+      Name:           "Public RouteTable"
+    subnets:
+      - "{{ public_subnet1a_id }}"
+      - "{{ public_subnet1b_id }}"
+    routes:
+      - dest:         "0.0.0.0/0"
+        gateway_id:   "{{ internet_gateway_id }}"
+
+# =============Creating Private Subnet1a==============
+# Creating a Private subnet for vpc_id
+- name:               Create Private Subnet for 1a zone
+  ec2_vpc_subnet:
+    state:            "present"
+    vpc_id:           "{{ vpc_id }}"
+    cidr:             "{{ private_subnet_1_cidr }}"
+    az:               "{{ aws_region }}a"
+    region:           "{{ aws_region }}"
+    resource_tags:
+      Name:           "PrivateSubnet-1a"
+  register: private_subnet1a
+
+# Getting the Private subnet id in a variable
+- name:               Set Private Subnet for 1a ID in variable
+  set_fact:
+    private_subnet1a_id: "{{ private_subnet1a.subnet.id }}"
+
+# =============Creating Private Subnet1b==============
+# Creating a Private subnet for vpc_id
+- name:               Create Private Subnet for 1b zone
+  ec2_vpc_subnet:
+    state:            "present"
+    vpc_id:           "{{ vpc_id }}"
+    cidr:             "{{ private_subnet_2_cidr }}"
+    az:               "{{ aws_region }}b"
+    region:           "{{ aws_region }}"
+    resource_tags:
+      Name:           "PrivateSubnet-1b"
+  register: private_subnet1b
+
+# Getting the Private subnet id in a variable
+- name:               Set Private Subnet for 1b ID in variable
+  set_fact:
+    private_subnet1a_id: "{{ private_subnet1b.subnet.id }}"
