@@ -1,0 +1,17 @@
+---
+# tasks file for creating ec2
+- name: Launch the new EC2 Instance
+  local_action:
+    module: ec2
+    group_id: "{{ security_group }}"
+    instance_type: "{{ instance_type }}"
+    image: "{{ image }}"
+    wait: true
+    region: "{{ aws_region }}"
+    keypair: "{{ keypair }}"
+    count: "{{ instance_count }}"
+    vpc_subnet_id: "{{ private_subnet1a }}"
+    instance_tags:
+        Name: Ansible_demo
+  register: ec2
+  tags: create
