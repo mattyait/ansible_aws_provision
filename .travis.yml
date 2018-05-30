@@ -15,7 +15,8 @@ before_install:
 install:
   # Install Ansible.
   - pip install ansible
-  - pip list
+  - pip install boto3
+  - pip install botocore
 
 script:
   # Check the syntax of ansible-playbook
