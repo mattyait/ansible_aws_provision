@@ -15,6 +15,7 @@ before_install:
 install:
   # Install Ansible.
   - pip install ansible
+  - pip list
 
 script:
   # Check the syntax of ansible-playbook
