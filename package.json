@@ -1,0 +1,27 @@
+{
+  "name": "ansible_aws_provision",
+  "version": "1.0.0",
+  "description": "Playbook role to provisioning the infrastructure on AWS Cloud",
+  "scripts": {
+    "test": "ansible-playbook -i inventory playbook_provisioning.yml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattyait/ansible_aws_provision.git"
+  },
+  "keywords": [
+    "ansible",
+    "playbook",
+    "aws",
+    "provisioning",
+    "ansible-roles"
+  ],
+  "author": "Mahattam",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/mattyait/ansible_aws_provision/issues"
+  },
+  "homepage": "https://github.com/mattyait/ansible_aws_provision#readme"
+}
