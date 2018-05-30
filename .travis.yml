@@ -11,16 +11,12 @@ branches:
 
 before_install:
   - sudo apt-get update -qq
+  - sudo apt-get install -qq python-apt python-pycurl
 
 install:
   # Install Ansible.
   - pip install ansible
-  - pip install boto3
-  - pip install botocore
 
 script:
   # Check the syntax of ansible-playbook
   - ansible-playbook -i inventory playbook_provisioning.yml --syntax-check
-
-  # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i inventory playbook_provisioning.yml
