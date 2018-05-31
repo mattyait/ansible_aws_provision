@@ -4,6 +4,6 @@ instance_type: t2.micro
 image: ami-14c5486b
 aws_region: us-east-1
 keypair: app_server
-security_group_id: sg-c5bbbe8c
+security_group_id: sg-af4663e7
 instance_count: 1
-private_subnet1a: subnet-a273cde8
+private_subnet1a_id: subnet-ca8b1880
