@@ -114,4 +114,4 @@
 # Getting the Private subnet id in a variable
 - name:               Set Private Subnet for 1b ID in variable
   set_fact:
-    private_subnet1a_id: "{{ private_subnet1b.subnet.id }}"
+    private_subnet1b_id: "{{ private_subnet1b.subnet.id }}"
