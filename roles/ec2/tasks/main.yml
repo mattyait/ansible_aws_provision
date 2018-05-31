@@ -10,7 +10,7 @@
     region: "{{ aws_region }}"
     keypair: "{{ keypair }}"
     count: "{{ instance_count }}"
-    vpc_subnet_id: "{{ private_subnet1a }}"
+    vpc_subnet_id: "{{ private_subnet1a_id }}"
     instance_tags:
         Name: Ansible_demo
   register: ec2
