@@ -1,6 +1,6 @@
 {
   "name": "ansible_aws_provision",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Playbook role to provisioning the infrastructure on AWS Cloud",
   "scripts": {
     "test": "ansible-playbook -i inventory playbook_provisioning.yml"
