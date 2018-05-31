@@ -1,3 +1,7 @@
 AWS_PROFILE: "default"
 aws_region: "us-east-1"
 vpc_name: "ansible_demo"
+
+# Security Group Variable
+ec2_sg_name: ec2_ansible_group
+sg_description: "Ansible Demo Security group for ec2"

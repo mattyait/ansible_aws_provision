@@ -1,0 +1,25 @@
+---
+# tasks file for security-group
+- name: Create ansible security group.
+  local_action:
+    module: ec2_group
+    name: "{{ ec2_sg_name }}"
+    region: "{{ aws_region }}"
+    description: "{{ sg_description }}"
+    state: present
+    vpc_id: "{{ vpc_id }}"
+    rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        cidr_ip: 0.0.0.0/0
+    resource_tags:
+      Name: "{{ ec2_sg_name }}"
+  register: aws_sg
+
+- name: Set Security Group ID in variable
+  set_fact:
+    security_group_id:  "{{ aws_sg.group_id }}"

@@ -1,0 +1,6 @@
+---
+# defaults file for security-group
+ec2_sg_name: ec2_ansible_sg
+aws_region: "us-east-1"
+sg_description: "Ansible Security group for ec2"
+vpc_id: "vpc-156a686e"

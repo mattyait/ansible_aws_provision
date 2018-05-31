@@ -3,7 +3,7 @@
 - name: Launch the new EC2 Instance
   local_action:
     module: ec2
-    group_id: "{{ security_group }}"
+    group_id: "{{ security_group_id }}"
     instance_type: "{{ instance_type }}"
     image: "{{ image }}"
     wait: true
