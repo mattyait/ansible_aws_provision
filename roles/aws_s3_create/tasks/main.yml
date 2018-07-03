@@ -1,0 +1,14 @@
+---
+# tasks file for s3
+- name: Create a S3 bucket
+  local_action:
+    module: aws_s3
+    bucket: "{{ item.bucket_name }}"
+    region: "{{ aws_region }}"
+    mode: create
+  with_items:
+    - "{{ aws_s3 }}"
+  register: s3_bucket
+
+- name: Display s3 bucket
+  debug: var=s3_bucket

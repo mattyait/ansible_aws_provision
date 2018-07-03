@@ -5,3 +5,7 @@ vpc_name: "ansible_demo"
 # Security Group Variable
 ec2_sg_name: ec2_ansible_group
 sg_description: "Ansible Demo Security group for ec2"
+
+# S3 Bucket Name
+aws_s3:
+  - bucket_name: "actualdemobucketxyz.com"

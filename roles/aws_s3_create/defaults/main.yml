@@ -1,0 +1,5 @@
+---
+# defaults file for s3
+aws_region: us-east-1
+aws_s3:
+  - bucket_name: "defaultdemobucketxyz.com"

@@ -3,6 +3,7 @@
   roles:
     - vpc
     - security-group
-    - ec2
+    #- ec2
+    - aws_s3_create
   vars_files:
     - vars.yml
