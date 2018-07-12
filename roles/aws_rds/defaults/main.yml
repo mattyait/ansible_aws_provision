@@ -1,0 +1,8 @@
+---
+# defaults file for aws_rds
+rds_instance_name: "ansible_demo"
+db_engine_type: "MySQL"
+rds_size: 10
+rds_instance_type: "db.m1.small"
+rds_db_username: "demo_admin"
+rds_db_password: "{{ vaulted_rds_db_password }}"
