@@ -1,0 +1,22 @@
+---
+# defaults file for aws_alb
+elb_target_group_names:
+  TargetGroup1:
+      name: "demo1"
+      protocol: "http"
+      port: 80
+      healthcheck_path: "/"
+  TargetGroup2:
+      name: "demo2"
+      protocol: "http"
+      port: 8000
+      healthcheck_path: "/"
+
+application_subnet:
+    - "subnet-42385925"
+    - "subnet-730a993a"
+    - "subnet-bdba54e5"
+elb_security_group:
+    - "sg-3bb5fc42"
+    - "sg-62b7fe1b"
+elb_ssl_certificate: "arn:aws:acm:ap-southeast-2:429264978553:certificate/b247aed5-4113-4803-97fd-b32f4dc5d14d"
