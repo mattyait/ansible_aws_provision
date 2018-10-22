@@ -1,0 +1,5 @@
+ec2_asg_lc_name: "demo-asg-lc"
+ec2_asg_name: "demo-asg"
+ec2_instance_type: "t2.micro"
+ec2_keypair: "demo"
+ec2_ami_image: "ami-14c5486b"
