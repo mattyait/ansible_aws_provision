@@ -2,7 +2,7 @@
 - hosts: local
   roles:
     - vpc
-    - security-group
+    - aws_security_group
     #- ec2
     - aws_s3_create
   vars_files:
